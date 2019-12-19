@@ -2,6 +2,8 @@ import React, { useState, useEffect} from "react";
 import {withFormik, Form, Field} from "formik";
 import * as Yup from 'yup';
 import axios from "axios";
+import { Card } from "semantic-ui-react";
+import 'semantic-ui-css/semantic.min.css'
 
 const UserForm = ({
     values,
@@ -39,12 +41,17 @@ const UserForm = ({
                 </label>
                 <button type={'submit'}>Submit User</button>
             </Form>
-            {users.map(user => (
-                <ul key={user.id}>
-                    <li>Name: {user.name}</li>
-                    <li>Email: {user.email}</li>
-                </ul>
-            ))}
+            <Card.Group>
+                {users.map(user => (
+                    <Card key={user.id}>
+                        <Card.Content>
+                            <Card.Header>{user.name}</Card.Header>
+                            <Card.Meta>*******</Card.Meta>
+                            <Card.Description>{user.email}</Card.Description>
+                        </Card.Content>
+                    </Card>
+                ))}
+            </Card.Group>
         </div>
     )
 };
